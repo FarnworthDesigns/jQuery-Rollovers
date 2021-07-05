@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery - Rollovers</title>
+<link rel="stylesheet" href="css/jq-rollovers.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<header>
+		<h1>jQuery Rollovers</h1>
+	</header>
+	<section>
+    
+    <img src="images/image-2.jpg" alt="">
+    <img class="top-image" src="images/image-3.jpg" alt="">
+    <p>CSS using hover pseudo-class</p>
+   
+    <div id="swapImage">
+      <img src="images/image-4.jpg" alt="" id="swap">
+      <p>jQuery using replaceWith()</p>
+    </div>
+    
+    <div id="photo">
+      <img src="images/image-6.jpg" alt="">
+      <p>jQuery using new Image() with mouseover()</p>
+    </div>
+    
+    <div id="hoverPhoto">
+      <img src="images/image-7.jpg" alt="">
+      <p>jQuery using new Image() with hover()</p>
+    </div>
+    
+  <!-- Using an array and then forcing images to be preloaded into the cache -->
+    <script>
+      var preloadImages = ["images/image-1.jpg",
+                           "images/image-2.jpg",
+                           "images/image-3.jpg",
+                           "images/image-4.jpg",
+                           "images/image-5.jpg",
+                           "images/image-6.jpg",
+                           "images/image-7.jpg"];
+      
+      for (var i=0; i < preloadImages.length; i++) {
+        $("<img>").attr("src", preloadImages[i]);
+      }
+    </script>
+    
+  <!-- Using replaceWith() to swap images on a mouseOver() -->
+    <script>
+      $("#swapImage").mouseover(function(){
+		  $("#swap").replaceWith('<img src="images/image-1.jpg">');
+	  });
+    </script>
+    
+  <!-- Swapping images using the new Image() function -->
+    <script>
+      var newPhoto = new Image();
+		newPhoto.src = "images/image-3.jpg";
+		$("#photo img").mouseover(function(){
+			$(this).attr("src", newPhoto.src);
+		});
+    </script>
+    
+   <!-- Using the jQuery hover() function for image rollover -->
+    <script>
+   		$("#hoverPhoto").hover(function(){
+			$(this).css('<img src="images/image-3.jpg">');
+		},
+		function(){
+			$(this).css('<img src"images/image-7.jpg">');
+		}
+		  );
+    </script>
+	</section>
+
+</body>
+</html>
